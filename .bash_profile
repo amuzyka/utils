@@ -66,4 +66,18 @@ alias showBlocked='sudo ipfw list'                  # showBlocked:  All ipfw rul
 #   ------------------------------------------------------------
     my_ps() { ps $@ -u $USER -o pid,%cpu,%mem,start,time,bsdtime,command ; }
 
+#   ---------------------------
+#   6. DOCKERS
+#   ---------------------------
+
+alias dockerRmContainers='docker stop $(docker ps -a -q) ; docker rm $(docker ps -a -q)'
+alias dockerRmImages='docker rmi $(docker image ls -a -q)'
+alias dockerPrune='docker volume prune ; docker system prune ; docker network prune'
+
+dockerClear(){
+    dockerRmContainers ; dockerRmImages ; dockerPrune ;
+}
+
+
+
 
